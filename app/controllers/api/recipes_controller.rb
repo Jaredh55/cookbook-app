@@ -1,14 +1,9 @@
 class Api::RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all #array of ruby recipe objects
     render 'index.json.jbuilder'
   end
 
-  def show
-    recipe_id = params[:id]
-    @recipe = Recipe.find(recipe_id)
-    render 'show.json.jbuilder'
-  end
 
   def create
     @recipe = Recipe.new(
@@ -21,6 +16,12 @@ class Api::RecipesController < ApplicationController
     @recipe.save
     render 'show.json.jbuilder'
   end 
+  
+  def show
+    recipe_id = params[:id]
+    @recipe = Recipe.find(recipe_id)
+    render 'show.json.jbuilder'
+  end
 
   def update
     recipe_id = params[:id]
